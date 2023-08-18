@@ -77,7 +77,7 @@ app.post("/file", async (req, res) => {
 
     console.log(glb);
 
-    await io.write("./out/model.glb", document);
+    await io.write(`./out/export-${new Date().getTime()}.glb`, document);
 
     res.json({ ok: true });
   } catch (e) {
@@ -88,5 +88,5 @@ app.post("/file", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Port ${port}`);
 });
