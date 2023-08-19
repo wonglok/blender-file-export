@@ -28,6 +28,7 @@ bl_info = {
 "category": "Render"
 }
 
+import threading
 import requests
 import bpy
 
@@ -47,8 +48,11 @@ def server_start():
         data = f.read()
         x = requests.post(
             url,
-            data = data,
-            headers={'Content-Type': 'application/octet-stream'}
+            data=data,
+            headers={
+                'Content-Type': 'application/octet-stream',
+                'filename': bpy.context.active_object.name
+            }
         )
 
 def server_stop():
@@ -61,7 +65,9 @@ class ExportGLBFile(bpy.types.Operator):
     bl_label = "ExportGLBFile"
 
     def execute(self, context):
-        server_start();
+        server_start()
+#        b = threading.Thread(target=server_start)
+#        b.start();
         return {'FINISHED'}
 
 class StopServer(bpy.types.Operator):
