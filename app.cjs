@@ -9,7 +9,7 @@ let {
 } = require("@gltf-transform/functions");
 
 let sharp = require("sharp");
-let formidable = require("formidable");
+// let formidable = require("formidable");
 let extensions = require("@gltf-transform/extensions");
 const express = require("express");
 const app = express();
